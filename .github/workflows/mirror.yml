@@ -1,0 +1,29 @@
+---
+name: Mirror Repository
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: read
+
+jobs:
+  gitlab:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Mirror Repository
+        uses: 0xTheProDev/gitlab-mirror@v1
+        with:
+          follow-tags: true
+          password: ${{ secrets.GITLAB_PAT }}
+          project-id: "js-utils"
+          username: "0xTheProDev"

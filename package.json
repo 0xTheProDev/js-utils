@@ -1,0 +1,53 @@
+{
+  "name": "js-utils",
+  "private": true,
+  "description": "A Collection of JavaScript/TypeScript Utility and Functions useful for NodeJS and Web Projects",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0xTheProDev/js-configs.git"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "create": "hygen package new",
+    "format": "turbo run format",
+    "format:fix": "turbo run format:fix",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "prepare": "bun run .husky/install.mjs",
+    "publish": "turbo run publish",
+    "test": "turbo run test",
+    "test:cov": "turbo run test:cov",
+    "test:watch": "turbo run test:watch",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.27.7",
+    "@swc/core": "1.7.28",
+    "@theprodev/eslint-config": "0.2.0",
+    "@theprodev/prettier-config": "0.1.0",
+    "@theprodev/tsconfigs": "0.1.0",
+    "@theprodev/tsup-config": "0.3.1",
+    "@vitest/coverage-v8": "2.1.1",
+    "check-yarn-lock": "0.2.1",
+    "eslint": "9.11.1",
+    "husky": "9.1.6",
+    "hygen": "6.2.11",
+    "lint-staged": "15.2.10",
+    "prettier": "3.3.3",
+    "sort-package-json": "2.10.1",
+    "tsup": "8.3.0",
+    "turbo": "2.1.2",
+    "typescript": "5.6.2",
+    "unplugin-swc": "1.5.1",
+    "vite-tsconfig-paths": "5.0.1",
+    "vitest": "2.1.1"
+  },
+  "packageManager": "yarn@1.22.0",
+  "engines": {
+    "node": ">= 20"
+  }
+}

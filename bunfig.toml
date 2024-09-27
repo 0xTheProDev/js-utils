@@ -1,0 +1,30 @@
+# Equivalent of `DO_NOT_TRACK` env variable.
+telemetry = false
+
+[install]
+
+# save exact version
+exact = true
+
+# whether to install peerDependencies
+peer = false
+
+# equivalent to `--frozen-lockfile` flag
+frozenLockfile = false
+
+[install.cache]
+
+# the directory to use for the cache
+dir = "~/.bun/install/cache"
+
+# when true, don't load from the global cache.
+# Bun may still write to node_modules/.cache
+disable = false
+
+[install.lockfile]
+# whether to save the lockfile to disk
+save = true
+
+# whether to save a non-Bun lockfile alongside bun.lockb
+# only "yarn" is supported
+print = "yarn"

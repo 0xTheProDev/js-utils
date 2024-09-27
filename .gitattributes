@@ -1,0 +1,12 @@
+# All files are assumed to be text by default with LF line endings (Unix-style).
+*       text      eol=lf
+
+# Support comments on JSON.
+*.json  text=auto linguist-language=JSON-with-Comments
+
+# Bun lockfile should be treated as binary and be diffed with lockb utility.
+*.lockb binary    diff=lockb
+
+# Images are binary by default and should not be messed with.
+*.png   binary
+*.svg   binary

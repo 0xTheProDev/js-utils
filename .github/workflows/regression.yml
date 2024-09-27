@@ -1,0 +1,112 @@
+---
+name: Regression
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "*.json"
+      - "*.yml"
+      - "packages/**"
+      - "!**.md"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "*.json"
+      - "*.yml"
+      - "packages/**"
+      - "!**.md"
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  CI: true
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  build:
+    name: Build Artifacts
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: 0xTheProDev/setup-js@v1.1
+        with:
+          cache: bun
+          cache-version-file: .bun-version
+          version-file: .nvmrc
+
+      - name: Run Build
+        run: yarn build
+
+  test:
+    name: Unit Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: 0xTheProDev/setup-js@v1.1
+        with:
+          cache: bun
+          cache-version-file: .bun-version
+          version-file: .nvmrc
+
+      - name: Run Tests
+        run: yarn test:cov
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: 0xTheProDev/setup-js@v1.1
+        with:
+          cache: bun
+          cache-version-file: .bun-version
+          version-file: .nvmrc
+
+      - name: Run Lint
+        run: yarn lint
+
+      - name: Run Format
+        run: yarn format
+
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: 0xTheProDev/setup-js@v1.1
+        with:
+          cache: bun
+          cache-version-file: .bun-version
+          version-file: .nvmrc
+
+      - name: Run Types
+        run: yarn typecheck
