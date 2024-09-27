@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Environment
-        uses: 0xTheProDev/setup-js@v1.1
+        uses: 0xTheProDev/setup-js@v1.2
         with:
           cache: bun
           cache-version-file: .bun-version
@@ -60,7 +60,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Environment
-        uses: 0xTheProDev/setup-js@v1.1
+        uses: 0xTheProDev/setup-js@v1.2
         with:
           cache: bun
           cache-version-file: .bun-version
@@ -82,7 +82,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Environment
-        uses: 0xTheProDev/setup-js@v1.1
+        uses: 0xTheProDev/setup-js@v1.2
         with:
           cache: bun
           cache-version-file: .bun-version
@@ -102,7 +102,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Environment
-        uses: 0xTheProDev/setup-js@v1.1
+        uses: 0xTheProDev/setup-js@v1.2
         with:
           cache: bun
           cache-version-file: .bun-version
