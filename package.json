@@ -25,7 +25,7 @@
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.7",
+    "@changesets/cli": "2.27.8",
     "@swc/core": "1.7.28",
     "@theprodev/eslint-config": "0.2.0",
     "@theprodev/prettier-config": "0.1.0",
