@@ -82,12 +82,12 @@ See the benchmarks of `Undici` released by official Node.JS Maintainers committe
     <tr>
       <td>
         <a href="https://github.com/nodejs/undici">
-          <img src=".github/assets/Undici_Benchmark_GET.png" alt="Undici/GetData" height="240" width="240"/>
+          <img src="../../.github/assets/Undici_Benchmark_GET.png" alt="Undici/GetData" height="240" width="240"/>
         </a>
       </td>
       <td>
         <a href="https://github.com/nodejs/undici">
-          <img src=".github/assets/Undici_Benchmark_SEND.png" alt="Undici/SendData" height="240" width="240"/>
+          <img src="../../.github/assets/Undici_Benchmark_SEND.png" alt="Undici/SendData" height="240" width="240"/>
         </a>
       </td>
     </tr>
@@ -104,12 +104,12 @@ See [CHANGELOG](CHANGELOG.md) for more details on what has been changed in the l
 
 ## Contributing
 
-See [Contributing Guidelines](https://github.com/0xTheProDev/js-utils/blob/main/.github/CONTRIBUTING.md).
+See [Contributing Guidelines](../../.github/CONTRIBUTING.md).
 
 ## License
 
 This project is licensed under the terms of the MIT license, see [LICENSE](LICENSE) for more details.
 
 <a href="https://github.com/0xTheProDev">
-  <img src=".github/assets/the-pro-dev-original.png" alt="The Pro Dev" height="120" width="120"/>
+  <img src="../../.github/assets/the-pro-dev-original.png" alt="The Pro Dev" height="120" width="120"/>
 </a>
