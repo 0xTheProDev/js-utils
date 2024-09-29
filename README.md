@@ -32,13 +32,13 @@ A Collection of JavaScript/TypeScript Utility and Functions useful for NodeJS an
   <tbody>
     <tr>
       <td>
-          <a href="./packages/stopwatch"><strong>Stopwatch</strong></a>
+          <a href="./packages/nest-http"><strong>Nest HTTP</strong></a>
         </td>
       <td>
-        <a href="https://www.npmjs.com/package/@theprodev/stopwatch"><img src="https://img.shields.io/npm/v/@theprodev/stopwatch?style=for-the-badge" alt="Npm Version" style="max-width: 100%;"></a>
+        <a href="https://www.npmjs.com/package/@theprodev/nest-http"><img src="https://img.shields.io/npm/v/@theprodev/nest-http?style=for-the-badge" alt="Npm Version" style="max-width: 100%;"></a>
       </td>
       <td>
-        <a href="https://www.npmjs.com/package/@theprodev/stopwatch"><img src="https://img.shields.io/npm/dw/@theprodev/stopwatch?style=for-the-badge" alt="Weekly Downloads" style="max-width: 100%;"></a>
+        <a href="https://www.npmjs.com/package/@theprodev/nest-http"><img src="https://img.shields.io/npm/dw/@theprodev/nest-http?style=for-the-badge" alt="Weekly Downloads" style="max-width: 100%;"></a>
       </td>
     </tr>
   </tbody>
