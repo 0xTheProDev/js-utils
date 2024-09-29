@@ -1,5 +1,5 @@
 # Changelog
 
-## `@theprodev/stopwatch`
+## `@theprodev/nest-http`
 
-See detailed [Changelog](packages/stopwatch/CHANGELOG.md).
+See detailed [Changelog](packages/nest-http/CHANGELOG.md).
