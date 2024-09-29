@@ -1,17 +1,13 @@
 import { Test } from "@nestjs/testing";
 import { lastValueFrom } from "rxjs";
-import { Dispatcher } from "undici";
-import { MockInstance } from "vitest";
 
-import {
-  ClientService,
-  ConnectOptions,
-  PipelineOptions,
-  RequestOptions,
-  StreamOptions,
-} from "../src/client.service";
+import { ClientService } from "../src/client.service";
 import { HttpModule } from "../src/http.module";
 import { DISPATCHER } from "../src/http.provider-tokens";
+
+import type { Duplex } from "stream";
+import type { Dispatcher } from "undici";
+import type { MockInstance } from "vitest";
 
 describe("ClientService", () => {
   let clientService: ClientService, dispatcher: Dispatcher;
@@ -63,13 +59,13 @@ describe("ClientService", () => {
   });
 
   describe("#connect", () => {
-    type ConnectSpy = MockInstance<[ConnectOptions]>;
+    type ConnectSpy = MockInstance<ClientService["connect"]>;
     let connectSpy: ConnectSpy;
 
     beforeEach(() => {
       connectSpy = vi
         .spyOn(dispatcher, "connect")
-        .mockResolvedValue(null) as unknown as ConnectSpy;
+        .mockResolvedValue() as unknown as ConnectSpy;
     });
 
     afterEach(() => {
@@ -110,14 +106,14 @@ describe("ClientService", () => {
   });
 
   describe("#pipeline", () => {
-    type PipelineSpy = MockInstance<[PipelineOptions]>;
+    type PipelineSpy = MockInstance<ClientService["pipeline"]>;
     let pipelineHandlerMock: MockInstance, pipelineSpy: PipelineSpy;
 
     beforeEach(() => {
       pipelineHandlerMock = vi.fn();
       pipelineSpy = vi
         .spyOn(dispatcher, "pipeline")
-        .mockResolvedValue(null) as unknown as PipelineSpy;
+        .mockResolvedValue(null as unknown as Duplex) as unknown as PipelineSpy;
     });
 
     afterEach(() => {
@@ -145,13 +141,13 @@ describe("ClientService", () => {
   });
 
   describe("#request", () => {
-    type RequestSpy = MockInstance<[RequestOptions]>;
+    type RequestSpy = MockInstance<ClientService["request"]>;
     let requestSpy: RequestSpy;
 
     beforeEach(() => {
       requestSpy = vi
         .spyOn(dispatcher, "request")
-        .mockResolvedValue(null) as unknown as RequestSpy;
+        .mockResolvedValue() as unknown as RequestSpy;
     });
 
     afterEach(() => {
@@ -175,14 +171,14 @@ describe("ClientService", () => {
   });
 
   describe("#stream", () => {
-    type StreamSpy = MockInstance<[StreamOptions]>;
+    type StreamSpy = MockInstance<ClientService["stream"]>;
     let streamFactoryMock: MockInstance, streamSpy: StreamSpy;
 
     beforeEach(() => {
       streamFactoryMock = vi.fn();
       streamSpy = vi
         .spyOn(dispatcher, "stream")
-        .mockResolvedValue(null) as unknown as StreamSpy;
+        .mockResolvedValue() as unknown as StreamSpy;
     });
 
     afterEach(() => {

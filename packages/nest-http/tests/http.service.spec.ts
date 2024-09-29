@@ -5,7 +5,7 @@ import { ClientService, RequestOptions } from "../src/client.service";
 import { HttpModule } from "../src/http.module";
 import { HttpService } from "../src/http.service";
 
-type ClientRequestSpy = MockInstance<[RequestOptions]>;
+type ClientRequestSpy = MockInstance<ClientService["request"]>;
 
 describe("HttpService", () => {
   let clientReqSpy: ClientRequestSpy,
