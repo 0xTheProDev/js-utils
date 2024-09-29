@@ -81,13 +81,13 @@ See the benchmarks of `Undici` released by official Node.JS Maintainers committe
   <tbody>
     <tr>
       <td>
-        <a href="https://github.com/nodejs/undici">
-          <img src="../../.github/assets/Undici_Benchmark_GET.png" alt="Undici/GetData" height="240" width="240"/>
+        <a href="https://github.com/nodejs/undici?tab=readme-ov-file#benchmarks">
+          <img src="../../.github/assets/Undici_Benchmark_GET.png" alt="Undici/GetData" height="480" width="480"/>
         </a>
       </td>
       <td>
-        <a href="https://github.com/nodejs/undici">
-          <img src="../../.github/assets/Undici_Benchmark_SEND.png" alt="Undici/SendData" height="240" width="240"/>
+        <a href="https://github.com/nodejs/undici?tab=readme-ov-file#benchmarks">
+          <img src="../../.github/assets/Undici_Benchmark_SEND.png" alt="Undici/SendData" height="480" width="480"/>
         </a>
       </td>
     </tr>
