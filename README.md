@@ -2,8 +2,6 @@
 
 # JavaScript Utilities
 
----
-
 [![Regression](https://github.com/0xTheProDev/js-utils/actions/workflows/regression.yml/badge.svg?style=for-the-badge)](https://github.com/0xTheProDev/js-utils/actions/workflows/regression.yml)
 [![Release](https://github.com/0xTheProDev/js-utils/actions/workflows/release.yml/badge.svg?style=for-the-badge)](https://github.com/0xTheProDev/js-utils/actions/workflows/release.yml)
 
