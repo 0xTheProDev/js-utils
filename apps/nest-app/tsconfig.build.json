@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "declaration": false,
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "sourceMap": false
+  },
+  "extends": "@theprodev/tsconfigs/nest",
+  "include": ["src"]
+}

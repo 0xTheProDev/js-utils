@@ -31,6 +31,14 @@
     },
     "typecheck": {
       "outputs": []
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:debug": {
+      "cache": false,
+      "persistent": true
     }
   }
 }
