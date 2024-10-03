@@ -7,7 +7,7 @@
   "access": "restricted",
   "baseBranch": "origin/main",
   "updateInternalDependencies": "patch",
-  "ignore": [],
+  "ignore": ["nest-example-app"],
   "snapshot": {
     "useCalculatedVersion": true
   }

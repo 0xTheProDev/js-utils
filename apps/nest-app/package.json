@@ -1,5 +1,5 @@
 {
-  "name": "@theprodev/nest-example-app",
+  "name": "nest-example-app",
   "private": true,
   "description": "Example NestJS Application Utilizing Shared Nest Modules",
   "scripts": {
