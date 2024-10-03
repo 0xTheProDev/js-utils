@@ -2,7 +2,7 @@
 
 ## 0.1.0
 
-### Minor Changes
+### Initial Release
 
 - 39a17a9: An HTTP/1.1 Client Module for NestJS Applications.
 
