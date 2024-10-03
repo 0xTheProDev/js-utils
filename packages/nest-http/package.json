@@ -1,6 +1,6 @@
 {
   "name": "@theprodev/nest-http",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "HTTP Module for NestJS Applications",
   "keywords": [
     "nodejs",
