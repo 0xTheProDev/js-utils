@@ -1,0 +1,67 @@
+{
+  "name": "@theprodev/nest-lock",
+  "version": "0.0.0",
+  "description": "Distributed Lock for NestJS Applications",
+  "keywords": [
+    "nodejs",
+    "lock",
+    "mutex",
+    "semaphore",
+    "redis",
+    "dicedb",
+    "distributed-systems",
+    "distributed-lock",
+    "microservices",
+    "typescript",
+    "nestjs"
+  ],
+  "bugs": {
+    "url": "https://github.com/0xTheProDev/js-utils/discussions"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0xTheProDev/js-utils.git"
+  },
+  "license": "MIT",
+  "author": "Progyan Bhattacharya <bprogyan@gmail.com>",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "format": "prettier --check \"./**/*.{cjs,js,json,md,mjs,ts,yaml,yml}\"",
+    "format:fix": "prettier --write \"./**/*.{cjs,js,json,md,mjs,ts,yaml,yml}\"",
+    "lint": "eslint \"./**/*.{cjs,js,mjs,ts}\"",
+    "lint:fix": "eslint --fix \"./**/*.{cjs,js,mjs,ts}\"",
+    "test": "vitest run",
+    "test:cov": "vitest run --coverage",
+    "test:debug": "vitest --inspect --inspect-brk --logHeapUsage --threads=false",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "prettier": "@theprodev/prettier-config",
+  "dependencies": {
+    "@theprodev/distributed-lock": "0.1.2"
+  },
+  "devDependencies": {
+    "@nestjs/common": "10.4.4",
+    "@nestjs/core": "10.4.4",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.1"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.0.0"
+  },
+  "engines": {
+    "node": ">= 20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
