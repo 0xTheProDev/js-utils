@@ -57,7 +57,19 @@ type LockModuleFactoryProviders = FactoryProvider<LockModuleOptions>;
  * @memberof LockModule
  */
 export type LockModuleAsyncOptions = Pick<ModuleMetadata, "imports"> & {
+  /**
+   * Optional list of providers to be injected into the context of the Factory function.
+   * @see [Injection scopes](https://docs.nestjs.com/fundamentals/injection-scopes)
+   */
   inject?: LockModuleFactoryProviders["inject"];
+  /**
+   * Type (class name) of provider (instance to be injected).
+   * @see [Class providers](https://docs.nestjs.com/fundamentals/custom-providers#class-providers-useclass)
+   */
   useClass?: LockModuleClassProviders["useClass"];
+  /**
+   * Factory function that returns an instance of the provider to be injected.
+   * @see [Factory providers](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory)
+   */
   useFactory?: LockModuleFactoryProviders["useFactory"];
 };

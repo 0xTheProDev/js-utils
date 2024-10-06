@@ -86,6 +86,22 @@ describe("LockModule", () => {
   });
 
   it("boots successfully asynchronously via useFactory", async () => {
+    const rootModule = await Test.createTestingModule({
+      imports: [
+        LockModule.forRootAsync({
+          useFactory: () => ({
+            config: {
+              host: "redis://example.com",
+            },
+          }),
+        }),
+      ],
+    }).compile();
+
+    expect(rootModule.get(LOCK)).toBeDefined();
+  });
+
+  it("boots successfully asynchronously via useFactory with injection token", async () => {
     @Injectable()
     class ConfigService {
       public lockOptions: LockModuleOptions = {

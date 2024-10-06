@@ -84,6 +84,23 @@ describe("HttpModule", () => {
   });
 
   it("boots successfully asynchronously via useFactory", async () => {
+    const rootModule = await Test.createTestingModule({
+      imports: [
+        HttpModule.registerAsync({
+          useFactory: () => ({
+            defaultRequestOptions: {
+              maxRedirections: 0,
+            },
+          }),
+        }),
+      ],
+    }).compile();
+
+    expect(rootModule.get(ClientService)).toBeDefined();
+    expect(rootModule.get(HttpService)).toBeDefined();
+  });
+
+  it("boots successfully asynchronously via useFactory with injection token", async () => {
     @Injectable()
     class ConfigService {
       public httpOptions: HttpModuleOptions = {
