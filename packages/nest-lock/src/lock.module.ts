@@ -5,43 +5,41 @@ import {
   Provider,
 } from "@nestjs/common";
 
-import { ClientService } from "./client.service";
-import { createDispatcher } from "./dispatcher";
-import { HttpModuleError } from "./http.error";
+import { createDistributedLock } from "./distributed-lock";
+import { LockModuleError } from "./lock.error";
 import {
-  HttpModuleAsyncOptions,
-  HttpModuleOptions,
-  HttpModuleOptionsFactory,
-} from "./http.module-options";
-import { DISPATCHER, HTTP_MODULE_OPTIONS } from "./http.provider-tokens";
-import { HttpService } from "./http.service";
+  LockModuleAsyncOptions,
+  LockModuleOptions,
+  LockModuleOptionsFactory,
+} from "./lock.module-options";
+import { LOCK, LOCK_MODULE_OPTIONS } from "./lock.provider-tokens";
 
 /**
  * @public
- * Http/1.1 Module. This module must be registered at each Individual Microservice Module.
+ * Distributed Lock Module. This module must be registered at the root application Module.
  */
 @Module({})
-export class HttpModule {
+export class LockModule {
   /**
    * @public
-   * Register Http Module.
+   * Configure Lock Module in root App Module.
    *
-   * @param options - Http Module Configuration.
+   * @param options - Lock Module Configuration.
    *
    * @example
    * \@Module({
    *    imports: [
-   *      HttpModule.register(),
+   *      LockModule.forRoot(),
    *    ],
    *    controllers: [AppController],
    *    providers: [AppService],
    *  })
    *  export class AppModule { }
    */
-  static register(options: HttpModuleOptions = {}): DynamicModule {
+  static forRoot(options: LockModuleOptions): DynamicModule {
     const providers: Provider[] = [
       {
-        provide: HTTP_MODULE_OPTIONS,
+        provide: LOCK_MODULE_OPTIONS,
         useValue: options,
       },
     ];
@@ -51,15 +49,15 @@ export class HttpModule {
 
   /**
    * @public
-   * Register Http Module with Lazy Initialization.
+   * Configure Lock Module with Lazy Initialization in root App Module.
    *
-   * @param options - Http Module Asynchronous Configuration.
+   * @param options - Lock Module Asynchronous Configuration.
    *
    * @example
    * \@Module({
    *    imports: [
    *      ConfigModule,
-   *      HttpModule.registerAsync({
+   *      LockModule.forRootAsync({
    *        imports: [ConfigModule], // This is not required for Global Modules.
    *        inject: [ConfigService],
    *        useFactory: (config: ConfigService) => ({
@@ -74,7 +72,7 @@ export class HttpModule {
    *  })
    *  export class AppModule { }
    */
-  static registerAsync(options: HttpModuleAsyncOptions): DynamicModule {
+  static forRootAsync(options: LockModuleAsyncOptions): DynamicModule {
     const providers: Provider[] = [];
 
     if (options.useClass && !options.useFactory) {
@@ -84,20 +82,20 @@ export class HttpModule {
           useClass: options.useClass,
         },
         {
-          provide: HTTP_MODULE_OPTIONS,
-          useFactory: (optsFactory: HttpModuleOptionsFactory) =>
-            optsFactory.createHttpModuleOptions(),
+          provide: LOCK_MODULE_OPTIONS,
+          useFactory: (optsFactory: LockModuleOptionsFactory) =>
+            optsFactory.createLockModuleOptions(),
           inject: [options.useClass],
         },
       );
     } else if (!options.useClass && options.useFactory) {
       providers.push({
-        provide: HTTP_MODULE_OPTIONS,
+        provide: LOCK_MODULE_OPTIONS,
         inject: options.inject ?? ([] as []),
         useFactory: options.useFactory,
       });
     } else {
-      throw new HttpModuleError(
+      throw new LockModuleError(
         `Unsupported key combination found on options. [${Object.keys(
           options,
         ).join(", ")}] cannot be used together or some keys might be missing.`,
@@ -122,18 +120,16 @@ export class HttpModule {
     const extraProviders: Provider[] = [
       ...providers,
       {
-        provide: DISPATCHER,
-        useFactory: createDispatcher,
-        inject: [HTTP_MODULE_OPTIONS],
+        provide: LOCK,
+        useFactory: createDistributedLock,
+        inject: [LOCK_MODULE_OPTIONS],
       },
-      ClientService,
-      HttpService,
     ];
 
     return {
       exports: extraProviders,
       imports,
-      module: HttpModule,
+      module: LockModule,
       providers: extraProviders,
     };
   }

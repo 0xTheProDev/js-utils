@@ -1,16 +1,6 @@
-export { ClientService } from "./client.service";
-export { HttpModule } from "./http.module";
-export { HttpService } from "./http.service";
+export { LockModule } from "./lock.module";
 
 export type {
-  ConnectOptions,
-  PipelineOptions,
-  RequestOptions,
-  ResponseData,
-  StreamOptions,
-} from "./client.service";
-export type {
-  HttpModuleOptions,
-  HttpModuleOptionsFactory,
-} from "./http.module-options";
-export type { HttpRequestOptions } from "./http.service";
+  LockModuleOptions,
+  LockModuleOptionsFactory,
+} from "./lock.module-options";
