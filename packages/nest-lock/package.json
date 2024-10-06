@@ -44,7 +44,7 @@
   },
   "prettier": "@theprodev/prettier-config",
   "dependencies": {
-    "@theprodev/distributed-lock": "0.1.2"
+    "@theprodev/distributed-lock": "0.2.0"
   },
   "devDependencies": {
     "@nestjs/common": "10.4.4",

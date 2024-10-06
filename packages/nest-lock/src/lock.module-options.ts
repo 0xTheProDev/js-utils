@@ -1,11 +1,8 @@
 import { ClassProvider, FactoryProvider, ModuleMetadata } from "@nestjs/common";
-import { DistributedLockConfig } from "@theprodev/distributed-lock";
-
-/**
- * @internal
- * Time in MilliSecond unit.
- */
-type TimeInMilliSecond = number;
+import {
+  DistributedLockConfig,
+  LockOptions,
+} from "@theprodev/distributed-lock";
 
 /**
  * @public
@@ -27,10 +24,7 @@ export type LockModuleOptions = {
   /**
    * Default Configuration Options for Distributed Lock (optional).
    */
-  defaultLockOptions?: {
-    /** Time to live before the Lock expires (in Milliseconds). */
-    ttl?: TimeInMilliSecond;
-  };
+  defaultLockOptions?: LockOptions;
 };
 
 /**
