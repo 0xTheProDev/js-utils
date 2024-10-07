@@ -20,9 +20,9 @@
 
 ## Description
 
-> A Distributed Lock Module for NestJS Applications.
+> A Redis-backed Lock Module for NestJS Applications.
 
-While working with Distributed Workloads, Horizontal Scaling and Microservices, we often have to make Remote Procedure Calls from one service to the other and these might well just be HTTP requests. To simplify making HTTP requests from a NestJS Application in a Web Backend, this module can be leveraged to build Type Safe modules.
+Accessing a shared resource (e.g., Database Connections, Files, Load-constrained Services etc.) in the Distributed Workloads, Horizontal Scaling and Microservices, we often have to execute the request in a Mutual Exclusion zone. The required Locking Mechanism needs to be distributed in nature and accessible from each service, i.e., it cannot live within a Process Map or In-memory of a running instance. This module aims to simplify acquiring and releasing such Locking Mechanism with ease for Nest Applications in Web Backend.
 
 ## Installation
 
