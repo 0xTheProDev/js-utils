@@ -1,32 +1,36 @@
 import { Global, Injectable, Module } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 
-import { ClientService } from "../src/client.service";
-import { HttpModuleError } from "../src/http.error";
-import { HttpModule } from "../src/http.module";
+import { LockModuleError } from "../src/lock.error";
+import { LockModule } from "../src/lock.module";
 import {
-  HttpModuleOptions,
-  HttpModuleOptionsFactory,
-} from "../src/http.module-options";
-import { HttpService } from "../src/http.service";
+  LockModuleOptions,
+  LockModuleOptionsFactory,
+} from "../src/lock.module-options";
+import { LOCK } from "../src/lock.provider-tokens";
 
-describe("HttpModule", () => {
+describe("LockModule", () => {
   it("boots successfully", async () => {
     const rootModule = await Test.createTestingModule({
-      imports: [HttpModule.register()],
+      imports: [
+        LockModule.forRoot({
+          config: {
+            host: "redis://example.com",
+          },
+        }),
+      ],
     }).compile();
 
-    expect(rootModule.get(ClientService)).toBeDefined();
-    expect(rootModule.get(HttpService)).toBeDefined();
+    expect(rootModule.get(LOCK)).toBeDefined();
   });
 
   it("boots successfully asynchronously via useClass", async () => {
     @Injectable()
-    class ConfigService implements HttpModuleOptionsFactory {
-      createHttpModuleOptions(): HttpModuleOptions {
+    class ConfigService implements LockModuleOptionsFactory {
+      createLockModuleOptions(): LockModuleOptions {
         return {
-          defaultRequestOptions: {
-            maxRedirections: 0,
+          config: {
+            host: "redis://example.com",
           },
         };
       }
@@ -40,24 +44,23 @@ describe("HttpModule", () => {
 
     const rootModule = await Test.createTestingModule({
       imports: [
-        HttpModule.registerAsync({
+        LockModule.forRootAsync({
           imports: [ConfigModule],
           useClass: ConfigService,
         }),
       ],
     }).compile();
 
-    expect(rootModule.get(ClientService)).toBeDefined();
-    expect(rootModule.get(HttpService)).toBeDefined();
+    expect(rootModule.get(LOCK)).toBeDefined();
   });
 
   it("boots successfully asynchronously via useClass from global module", async () => {
     @Injectable()
-    class ConfigService implements HttpModuleOptionsFactory {
-      createHttpModuleOptions(): HttpModuleOptions {
+    class ConfigService implements LockModuleOptionsFactory {
+      createLockModuleOptions(): LockModuleOptions {
         return {
-          defaultRequestOptions: {
-            maxRedirections: 0,
+          config: {
+            host: "redis://example.com",
           },
         };
       }
@@ -73,39 +76,37 @@ describe("HttpModule", () => {
     const rootModule = await Test.createTestingModule({
       imports: [
         ConfigModule,
-        HttpModule.registerAsync({
+        LockModule.forRootAsync({
           useClass: ConfigService,
         }),
       ],
     }).compile();
 
-    expect(rootModule.get(ClientService)).toBeDefined();
-    expect(rootModule.get(HttpService)).toBeDefined();
+    expect(rootModule.get(LOCK)).toBeDefined();
   });
 
   it("boots successfully asynchronously via useFactory", async () => {
     const rootModule = await Test.createTestingModule({
       imports: [
-        HttpModule.registerAsync({
+        LockModule.forRootAsync({
           useFactory: () => ({
-            defaultRequestOptions: {
-              maxRedirections: 0,
+            config: {
+              host: "redis://example.com",
             },
           }),
         }),
       ],
     }).compile();
 
-    expect(rootModule.get(ClientService)).toBeDefined();
-    expect(rootModule.get(HttpService)).toBeDefined();
+    expect(rootModule.get(LOCK)).toBeDefined();
   });
 
   it("boots successfully asynchronously via useFactory with injection token", async () => {
     @Injectable()
     class ConfigService {
-      public httpOptions: HttpModuleOptions = {
-        defaultRequestOptions: {
-          maxRedirections: 0,
+      public lockOptions: LockModuleOptions = {
+        config: {
+          host: "redis://example.com",
         },
       };
     }
@@ -118,24 +119,23 @@ describe("HttpModule", () => {
 
     const rootModule = await Test.createTestingModule({
       imports: [
-        HttpModule.registerAsync({
+        LockModule.forRootAsync({
           imports: [ConfigModule],
           inject: [ConfigService],
-          useFactory: (cfg: ConfigService) => cfg.httpOptions,
+          useFactory: (cfg: ConfigService) => cfg.lockOptions,
         }),
       ],
     }).compile();
 
-    expect(rootModule.get(ClientService)).toBeDefined();
-    expect(rootModule.get(HttpService)).toBeDefined();
+    expect(rootModule.get(LOCK)).toBeDefined();
   });
 
   it("boots successfully asynchronously via useFactory from global module", async () => {
     @Injectable()
     class ConfigService {
-      public httpOptions: HttpModuleOptions = {
-        defaultRequestOptions: {
-          maxRedirections: 0,
+      public lockOptions: LockModuleOptions = {
+        config: {
+          host: "redis://example.com",
         },
       };
     }
@@ -150,37 +150,44 @@ describe("HttpModule", () => {
     const rootModule = await Test.createTestingModule({
       imports: [
         ConfigModule,
-        HttpModule.registerAsync({
+        LockModule.forRootAsync({
           inject: [ConfigService],
-          useFactory: (cfg: ConfigService) => cfg.httpOptions,
+          useFactory: (cfg: ConfigService) => cfg.lockOptions,
         }),
       ],
     }).compile();
 
-    expect(rootModule.get(ClientService)).toBeDefined();
-    expect(rootModule.get(HttpService)).toBeDefined();
+    expect(rootModule.get(LOCK)).toBeDefined();
   });
 
   it("throws when neither useClass or useFactory are present", () => {
     const rootModuleFactory = () =>
       Test.createTestingModule({
-        imports: [HttpModule.registerAsync({})],
+        imports: [LockModule.forRootAsync({})],
       }).compile();
 
-    expect(rootModuleFactory).toThrowError(HttpModuleError);
+    expect(rootModuleFactory).toThrowError(LockModuleError);
   });
 
   it("throws when both useClass and useFactory are present", () => {
     @Injectable()
-    class ConfigFactory implements HttpModuleOptionsFactory {
-      createHttpModuleOptions(): HttpModuleOptions {
-        return {};
+    class ConfigFactory implements LockModuleOptionsFactory {
+      createLockModuleOptions(): LockModuleOptions {
+        return {
+          config: {
+            host: "redis://example.com",
+          },
+        };
       }
     }
 
     @Injectable()
     class ConfigService {
-      public authOptions: HttpModuleOptions = {};
+      public lockOptions: LockModuleOptions = {
+        config: {
+          host: "redis://example.com",
+        },
+      };
     }
 
     @Module({
@@ -192,15 +199,15 @@ describe("HttpModule", () => {
     const rootModuleFactory = () =>
       Test.createTestingModule({
         imports: [
-          HttpModule.registerAsync({
+          LockModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
             useClass: ConfigFactory,
-            useFactory: (cfg: ConfigService) => cfg.authOptions,
+            useFactory: (cfg: ConfigService) => cfg.lockOptions,
           }),
         ],
       }).compile();
 
-    expect(rootModuleFactory).toThrowError(HttpModuleError);
+    expect(rootModuleFactory).toThrowError(LockModuleError);
   });
 });
