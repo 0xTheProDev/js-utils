@@ -43,7 +43,7 @@
   "prettier": "@theprodev/prettier-config",
   "dependencies": {
     "deepmerge": "npm:deepmerge-ts@7.1.0",
-    "undici": "6.19.8"
+    "undici": "6.20.0"
   },
   "devDependencies": {
     "@nestjs/common": "10.4.4",
