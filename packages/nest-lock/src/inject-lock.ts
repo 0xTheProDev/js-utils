@@ -4,7 +4,7 @@ import { LOCK } from "./lock.provider-tokens";
 
 /**
  * @public
- * Injects Global Lock Instance to an Injectable Class.
+ * Injects Global Lock Instance to an Injectable Class via Parameter or Property.
  *
  * @memberof LockModule
  *
@@ -13,7 +13,8 @@ import { LOCK } from "./lock.provider-tokens";
  * \@Injectable()
  * export class AppService {
  *   constructor(
- *     \@InjectLock() private readonly lock:Lock,
+ *     \@InjectLock()
+ *      private readonly lock: Lock,
  *   ) {}
  *
  *   getItems(): Promise<unknown> {
@@ -21,4 +22,5 @@ import { LOCK } from "./lock.provider-tokens";
  *   }
  * }
  */
-export const InjectLock = (): ParameterDecorator => Inject(LOCK);
+export const InjectLock = (): ParameterDecorator & PropertyDecorator =>
+  Inject(LOCK);
