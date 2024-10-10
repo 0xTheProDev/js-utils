@@ -9,7 +9,8 @@ describe("InjectLock", () => {
   it("should inject Lock instance into properties", async () => {
     @Injectable()
     class AppService {
-      @InjectLock() public readonly lock: DistributedLock;
+      @InjectLock()
+      public readonly lock!: DistributedLock;
     }
 
     const rootModule = await Test.createTestingModule({
