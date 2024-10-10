@@ -58,6 +58,25 @@ describe("ClientService", () => {
     });
   });
 
+  describe("#compose", () => {
+    let composeSpy: MockInstance;
+
+    beforeEach(() => {
+      composeSpy = vi.spyOn(dispatcher, "compose");
+    });
+
+    afterEach(() => {
+      composeSpy.mockRestore();
+    });
+
+    it("should compose a chain of dispatchers", () => {
+      const dispatchInterceptor = (dispatch: Dispatcher["dispatch"]) =>
+        dispatch;
+      clientService.compose(dispatchInterceptor);
+      expect(composeSpy).toHaveBeenCalled();
+    });
+  });
+
   describe("#connect", () => {
     type ConnectSpy = MockInstance<ClientService["connect"]>;
     let connectSpy: ConnectSpy;
