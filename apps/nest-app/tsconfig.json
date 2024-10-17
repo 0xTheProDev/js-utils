@@ -1,4 +1,9 @@
 {
   "extends": "./tsconfig.build",
-  "compilerOptions": {}
+  "compilerOptions": {
+    "baseUrl": "../../",
+    "paths": {
+      "@theprodev/*": ["packages/*/src/index.ts"]
+    }
+  }
 }

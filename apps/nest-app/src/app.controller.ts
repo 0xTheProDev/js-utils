@@ -7,8 +7,13 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get("ping")
-  getPing(): string {
-    return "ok";
+  getPing() {
+    return "ok" as const;
+  }
+
+  @Get("hello")
+  getHello() {
+    return this.appService.getHello();
   }
 
   @Get("quote")

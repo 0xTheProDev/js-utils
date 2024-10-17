@@ -5,6 +5,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ConfigModule } from "./config/config.module";
 import { ConfigService } from "./config/config.service";
+import { LockModule } from "@theprodev/nest-lock";
 
 @Module({
   imports: [
@@ -15,6 +16,16 @@ import { ConfigService } from "./config/config.service";
         defaultRequestOptions: {
           bodyTimeout: config.getMaxTimeout(),
           maxRedirections: config.getMaxRedirections(),
+        },
+      }),
+    }),
+    LockModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        config: {
+          host: config.getRedisHost(),
+          port: config.getRedisPort(),
+          lazyConnect: false,
         },
       }),
     }),

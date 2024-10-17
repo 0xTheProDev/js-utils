@@ -29,4 +29,12 @@ export class ConfigService {
   getMaxTimeout() {
     return 5000 as const;
   }
+
+  getRedisHost() {
+    return "localhost" as const;
+  }
+
+  getRedisPort() {
+    return 6379 as const;
+  }
 }
