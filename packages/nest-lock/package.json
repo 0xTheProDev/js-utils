@@ -1,6 +1,6 @@
 {
   "name": "@theprodev/nest-lock",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Distributed Lock for NestJS Applications",
   "keywords": [
     "nodejs",
