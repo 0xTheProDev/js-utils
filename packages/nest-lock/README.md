@@ -36,20 +36,47 @@ yarn add @theprodev/nest-lock
 
 Most common usage entails defining and configuring the `LockModule` using a predefined global module `ConfigModule` and use appropriate configuration options to pass on to this module.
 
-```ts
-import { LockModule } from "@theprodev/nest-lock";
+- In `app.module.ts`:
 
-@Module({
-  imports: [
-    LockModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (cfg: ConfigService) => cfg.lockOptions,
-    }),
-  ],
-})
-export class AppModule {}
-```
+  ```ts
+  import { LockModule } from "@theprodev/nest-lock";
+
+  @Module({
+    imports: [
+      LockModule.forRootAsync({
+        imports: [ConfigModule],
+        inject: [ConfigService],
+        useFactory: (cfg: ConfigService) => cfg.lockOptions,
+      }),
+    ],
+  })
+  export class AppModule {}
+  ```
+
+- In `app.service.ts`:
+
+  ```ts
+  import { InjectLock, Lock } from "@theprodev/nest-lock";
+
+  @Injectable()
+  export class AppService {
+    constructor(
+      private readonly httpService: HttpService,
+      @InjectLock() private readonly lock: Lock,
+    ) {}
+
+    async getHello(): Promise<string> {
+      try {
+        return await this.lock.execute("appService", () => "Hello World!", {
+          ttl: 1000,
+        });
+      } catch (err) {
+        console.log((err as any).cause);
+        return "Bye World!";
+      }
+    }
+  }
+  ```
 
 For any further usage, refer to the [Type Declaration](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) shipped with the package. Make sure your editor or IDE is capable of powering intellisense from the declaration file provided.
 
