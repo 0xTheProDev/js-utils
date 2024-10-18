@@ -39,6 +39,17 @@ A Collection of JavaScript/TypeScript Utility and Functions useful for NodeJS an
         <a href="https://www.npmjs.com/package/@theprodev/nest-http"><img src="https://img.shields.io/npm/dw/@theprodev/nest-http?style=for-the-badge" alt="Weekly Downloads" style="max-width: 100%;"></a>
       </td>
     </tr>
+    <tr>
+      <td>
+          <a href="./packages/nest-lock"><strong>Nest Lock</strong></a>
+        </td>
+      <td>
+        <a href="https://www.npmjs.com/package/@theprodev/nest-lock"><img src="https://img.shields.io/npm/v/@theprodev/nest-lock?style=for-the-badge" alt="Npm Version" style="max-width: 100%;"></a>
+      </td>
+      <td>
+        <a href="https://www.npmjs.com/package/@theprodev/nest-lock"><img src="https://img.shields.io/npm/dw/@theprodev/nest-lock?style=for-the-badge" alt="Weekly Downloads" style="max-width: 100%;"></a>
+      </td>
+    </tr>
   </tbody>
 </table>
 
