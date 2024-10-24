@@ -1,9 +1,9 @@
 {
-  "extends": "@theprodev/tsconfigs/nest",
+  "extends": "@theprodev/tsconfigs/base",
   "compilerOptions": {
+    "declaration": false,
     "incremental": false,
     "outDir": "./dist",
-    "removeComments": false,
     "types": ["vitest/globals"]
   }
 }

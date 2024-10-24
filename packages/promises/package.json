@@ -1,0 +1,55 @@
+{
+  "name": "@theprodev/promises",
+  "version": "0.0.0",
+  "description": "Promises from the Future Generations.",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "nodejs",
+    "web",
+    "nextgen",
+    "promises",
+    "angular",
+    "react",
+    "nextjs",
+    "remixjs",
+    "solid",
+    "express",
+    "fastify",
+    "nestjs"
+  ],
+  "bugs": {
+    "url": "https://github.com/0xTheProDev/js-utils/discussions"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0xTheProDev/js-utils.git"
+  },
+  "license": "MIT",
+  "author": "Progyan Bhattacharya <bprogyan@gmail.com>",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "format": "prettier --check \"./**/*.{cjs,js,json,md,mjs,ts,yaml,yml}\"",
+    "format:fix": "prettier --write \"./**/*.{cjs,js,json,md,mjs,ts,yaml,yml}\"",
+    "lint": "eslint \"./**/*.{cjs,js,mjs,ts}\"",
+    "lint:fix": "eslint --fix \"./**/*.{cjs,js,mjs,ts}\"",
+    "test": "vitest run",
+    "test:cov": "vitest run --coverage",
+    "test:debug": "vitest --inspect --inspect-brk --logHeapUsage --threads=false",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "prettier": "@theprodev/prettier-config",
+  "engines": {
+    "node": ">= 20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
