@@ -1,0 +1,13 @@
+node_modules
+*.log
+
+
+.turbo
+build/**
+dist/**
+coverage/
+snapshot/
+generated/
+pnpm-lock.yaml
+
+
