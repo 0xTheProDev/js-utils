@@ -1,8 +1,11 @@
 {
   "extends": "@theprodev/tsconfigs/node",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "incremental": false,
+    "lib": ["DOM"],
+    "jsx": "preserve",
     "outDir": "./dist",
     "removeComments": false,
     "types": ["vitest/globals"]
