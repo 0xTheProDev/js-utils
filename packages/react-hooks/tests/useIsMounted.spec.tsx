@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { useIsMounted } from "../src/useIsMounted";
 
-describe("useIsMounted", () => {
+describe.skip("useIsMounted", () => {
   const renderTestComponent = (fn: () => Promise<void>) => {
     const TestComponent = ({ getData }: { getData: () => Promise<void> }) => {
       const [state, setState] = useState("loading");

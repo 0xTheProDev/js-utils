@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "incremental": false,
-    "lib": ["DOM"],
+    "lib": ["DOM", "ESNext", "ScriptHost", "WebWorker"],
     "jsx": "preserve",
     "outDir": "./dist",
     "removeComments": false,
