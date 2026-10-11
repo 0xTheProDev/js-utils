@@ -1,0 +1,14 @@
+{
+  "extends": "@theprodev/tsconfigs/node",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "incremental": false,
+    "lib": ["DOM", "ESNext", "ScriptHost", "WebWorker"],
+    "jsx": "preserve",
+    "outDir": "./dist",
+    "removeComments": false,
+    "types": ["vitest/globals"],
+    "ignoreDeprecations": "6.0"
+  }
+}
