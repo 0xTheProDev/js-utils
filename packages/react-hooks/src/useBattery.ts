@@ -59,6 +59,12 @@ export const useBattery = () => {
 
   useEffect(() => {
     let battery: BatteryManager | undefined;
+    const events: BatteryEvent[] = [
+      "chargingchange",
+      "chargingtimechange",
+      "dischargingtimechange",
+      "levelchange",
+    ];
 
     const handleChange = ({
       charging,
@@ -76,39 +82,39 @@ export const useBattery = () => {
       });
     };
 
-    const onMount = async () => {
-      if ((navigator as ChromiumNavigator).getBattery) {
-        setIsLoading(true);
-        setIsSupported(true);
+    const initializeBattery = async () => {
+      const batteryApi = navigator as ChromiumNavigator;
+      if (!isMounted() || typeof batteryApi.getBattery !== "function") return;
 
-        try {
-          const _battery = await (navigator as ChromiumNavigator).getBattery();
+      setIsLoading(true);
+      setIsSupported(true);
 
-          if (isMounted()) {
-            battery = _battery;
-            handleChange(battery);
+      try {
+        battery = await batteryApi.getBattery();
+        if (!isMounted()) return;
 
-            battery.addEventListener("chargingchange", handleChange);
-            battery.addEventListener("chargingtimechange", handleChange);
-            battery.addEventListener("dischargingtimechange", handleChange);
-            battery.addEventListener("levelchange", handleChange);
-          }
-        } catch (error) {
+        handleChange(battery);
+        events.forEach((event) =>
+          battery?.addEventListener(event, handleChange),
+        );
+      } catch (error) {
+        if (isMounted()) {
           setErrorState(error);
-        } finally {
+        }
+      } finally {
+        if (isMounted()) {
           setIsLoading(false);
         }
       }
     };
 
-    onMount();
+    void initializeBattery();
 
     return () => {
       if (battery) {
-        battery.removeEventListener("chargingchange", handleChange);
-        battery.removeEventListener("chargingtimechange", handleChange);
-        battery.removeEventListener("dischargingtimechange", handleChange);
-        battery.removeEventListener("levelchange", handleChange);
+        events.forEach((event) =>
+          battery?.removeEventListener(event, handleChange),
+        );
       }
     };
   }, []);

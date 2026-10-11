@@ -1,44 +1,33 @@
-import { act, render, screen } from "@testing-library/react";
-import { useEffect, useState } from "react";
+import { render } from "@testing-library/react";
+import { useEffect } from "react";
 
 import { useIsMounted } from "../src/useIsMounted";
 
-describe.skip("useIsMounted", () => {
-  const renderTestComponent = (fn: () => Promise<void>) => {
-    const TestComponent = ({ getData }: { getData: () => Promise<void> }) => {
-      const [state, setState] = useState("loading");
-      const isMounted = useIsMounted();
+describe("useIsMounted", () => {
+  it("reports mounted state and remains stable across renders", () => {
+    let mountedCheck = () => false;
+    let mountedDuringEffect = false;
+
+    const TestComponent = ({ count }: { count: number }) => {
+      mountedCheck = useIsMounted();
 
       useEffect(() => {
-        const handleAsyncEffect = async () => {
-          await getData();
-          console.log("test");
-          if (isMounted()) {
-            setState("loaded");
-          }
-        };
+        mountedDuringEffect = mountedCheck();
+      });
 
-        handleAsyncEffect();
-      }, []);
-
-      return <div data-testid="state">{state}</div>;
+      return <div>{count}</div>;
     };
 
-    return render(<TestComponent getData={fn} />);
-  };
+    const { rerender, unmount } = render(<TestComponent count={0} />);
+    const initialMountedCheck = mountedCheck;
 
-  it("should update state if component is mounted", () => {
-    const mockFn = vi.fn();
-    renderTestComponent(mockFn);
+    expect(mountedDuringEffect).toBe(true);
 
-    expect(mockFn).toHaveBeenCalledOnce();
-    expect(screen.getByTestId("state").textContent).toBe("loading");
-    console.log("before");
+    rerender(<TestComponent count={1} />);
+    expect(mountedCheck).toBe(initialMountedCheck);
+    expect(mountedDuringEffect).toBe(true);
 
-    act(() => {
-      mockFn.mockResolvedValue(undefined);
-      console.log("after");
-      expect(screen.getByTestId("state").textContent).toBe("loaded");
-    });
+    unmount();
+    expect(mountedCheck()).toBe(false);
   });
 });

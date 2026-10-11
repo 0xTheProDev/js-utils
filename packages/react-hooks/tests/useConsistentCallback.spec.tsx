@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { memo, useState } from "react";
+import { memo, useLayoutEffect, useState } from "react";
 
 import { useConsistentCallback } from "../src/useConsistentCallback";
 
@@ -44,7 +44,39 @@ describe("useConsistentCallback", () => {
     expect(mockFn).toHaveBeenCalledOnce();
 
     await userEvent.click(screen.getByRole("button", { name: "Increase" }));
+    await userEvent.click(screen.getByRole("button", { name: "Increase" }));
 
     expect(mockFn).toHaveBeenCalledOnce();
+    expect(screen.getByText("2").textContent).toBe("2");
+  });
+
+  it("should expose the latest callback before child layout effects run", () => {
+    const onCallback = vi.fn();
+
+    const ChildComponent = ({
+      value,
+      onLayout,
+    }: {
+      value: string;
+      onLayout: VoidFunction;
+    }) => {
+      useLayoutEffect(() => {
+        onLayout();
+      }, [onLayout, value]);
+
+      return null;
+    };
+
+    const ParentComponent = ({ value }: { value: string }) => {
+      const onLayout = useConsistentCallback(() => onCallback(value));
+
+      return <ChildComponent value={value} onLayout={onLayout} />;
+    };
+
+    const { rerender } = render(<ParentComponent value="initial" />);
+    expect(onCallback).toHaveBeenLastCalledWith("initial");
+
+    rerender(<ParentComponent value="updated" />);
+    expect(onCallback).toHaveBeenLastCalledWith("updated");
   });
 });

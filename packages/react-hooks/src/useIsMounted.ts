@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef } from "react";
 
 /**
- * Check if a Component has been mounted on the Viewport.
- * @returns Function that returns whether the React Component Tree has been mounted on the DOM or not.
+ * Check whether a component is currently mounted.
+ * @returns A stable function that reports whether the component is mounted.
  *
  * @example
  * const Component = (props) => {
@@ -20,20 +20,15 @@ import { useCallback, useEffect, useRef } from "react";
  * }
  */
 export const useIsMounted = () => {
-  const unmountSignal = Symbol("Unmount Signal");
-  const abortControllerRef = useRef<AbortController | null>(null);
+  const isMountedRef = useRef(false);
 
   useEffect(() => {
-    abortControllerRef.current = new AbortController();
+    isMountedRef.current = true;
 
     return () => {
-      abortControllerRef.current?.abort(unmountSignal);
-      abortControllerRef.current = null;
+      isMountedRef.current = false;
     };
   }, []);
 
-  return useCallback(
-    () => Boolean(abortControllerRef.current?.signal.aborted),
-    [],
-  );
+  return useCallback(() => isMountedRef.current, []);
 };
