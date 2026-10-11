@@ -8,6 +8,7 @@
     "jsx": "preserve",
     "outDir": "./dist",
     "removeComments": false,
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "ignoreDeprecations": "6.0"
   }
 }
