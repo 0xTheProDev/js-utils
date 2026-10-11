@@ -15,7 +15,6 @@ import { LockModule } from "@theprodev/nest-lock";
       useFactory: (config: ConfigService) => ({
         defaultRequestOptions: {
           bodyTimeout: config.getMaxTimeout(),
-          maxRedirections: config.getMaxRedirections(),
         },
       }),
     }),
