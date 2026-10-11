@@ -1,14 +1,10 @@
-import {
-  DynamicModule,
-  Module,
-  ModuleMetadata,
-  Provider,
-} from "@nestjs/common";
+import { Module } from "@nestjs/common";
+import type { DynamicModule, ModuleMetadata, Provider } from "@nestjs/common";
 
 import { ClientService } from "./client.service";
 import { createDispatcher } from "./dispatcher";
 import { HttpModuleError } from "./http.error";
-import {
+import type {
   HttpModuleAsyncOptions,
   HttpModuleOptions,
   HttpModuleOptionsFactory,

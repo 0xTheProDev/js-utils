@@ -1,6 +1,6 @@
 import { DistributedLock } from "@theprodev/distributed-lock";
 
-import { LockModuleOptions } from "./lock.module-options";
+import type { LockModuleOptions } from "./lock.module-options";
 
 import type { OnApplicationShutdown } from "@nestjs/common";
 
