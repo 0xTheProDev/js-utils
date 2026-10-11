@@ -3,7 +3,7 @@ import { Test } from "@nestjs/testing";
 
 import { LockModuleError } from "../src/lock.error";
 import { LockModule } from "../src/lock.module";
-import {
+import type {
   LockModuleOptions,
   LockModuleOptionsFactory,
 } from "../src/lock.module-options";

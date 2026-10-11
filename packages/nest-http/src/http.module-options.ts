@@ -1,4 +1,8 @@
-import { ClassProvider, FactoryProvider, ModuleMetadata } from "@nestjs/common";
+import type {
+  ClassProvider,
+  FactoryProvider,
+  ModuleMetadata,
+} from "@nestjs/common";
 import { Agent, RetryHandler } from "undici";
 
 import type {

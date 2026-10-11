@@ -1,4 +1,4 @@
-import { OnApplicationShutdown } from "@nestjs/common";
+import type { OnApplicationShutdown } from "@nestjs/common";
 import { Agent, RetryAgent } from "undici";
 
 import { createDispatcher } from "../src/dispatcher";

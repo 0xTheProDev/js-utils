@@ -1,7 +1,8 @@
 import { Test } from "@nestjs/testing";
-import { MockInstance } from "vitest";
+import type { MockInstance } from "vitest";
 
-import { ClientService, RequestOptions } from "../src/client.service";
+import { ClientService } from "../src/client.service";
+import type { RequestOptions } from "../src/client.service";
 import { HttpModule } from "../src/http.module";
 import { HttpService } from "../src/http.service";
 

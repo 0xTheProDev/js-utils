@@ -4,7 +4,7 @@ import { Test } from "@nestjs/testing";
 import { ClientService } from "../src/client.service";
 import { HttpModuleError } from "../src/http.error";
 import { HttpModule } from "../src/http.module";
-import {
+import type {
   HttpModuleOptions,
   HttpModuleOptionsFactory,
 } from "../src/http.module-options";

@@ -1,5 +1,9 @@
-import { ClassProvider, FactoryProvider, ModuleMetadata } from "@nestjs/common";
-import {
+import type {
+  ClassProvider,
+  FactoryProvider,
+  ModuleMetadata,
+} from "@nestjs/common";
+import type {
   DistributedLockConfig,
   LockOptions,
 } from "@theprodev/distributed-lock";
