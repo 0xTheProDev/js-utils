@@ -17,7 +17,7 @@ describe("ClientService", () => {
       imports: [
         HttpModule.register({
           defaultConnectOptions: {
-            maxRedirections: 5,
+            responseHeaders: "raw",
           },
           defaultPipelineOptions: {
             objectMode: true,
@@ -84,7 +84,9 @@ describe("ClientService", () => {
     beforeEach(() => {
       connectSpy = vi
         .spyOn(dispatcher, "connect")
-        .mockResolvedValue() as unknown as ConnectSpy;
+        .mockResolvedValue(
+          undefined as unknown as Dispatcher.ConnectData,
+        ) as unknown as ConnectSpy;
     });
 
     afterEach(() => {
@@ -101,8 +103,8 @@ describe("ClientService", () => {
       expect(connectSpy).toHaveBeenCalledOnce();
       expect(connectSpy).toHaveBeenCalledWith({
         origin: "http://connect.example.com",
-        maxRedirections: 5,
         path: "/test",
+        responseHeaders: "raw",
       });
     });
   });
@@ -166,7 +168,9 @@ describe("ClientService", () => {
     beforeEach(() => {
       requestSpy = vi
         .spyOn(dispatcher, "request")
-        .mockResolvedValue() as unknown as RequestSpy;
+        .mockResolvedValue(
+          undefined as unknown as Dispatcher.ResponseData,
+        ) as unknown as RequestSpy;
     });
 
     afterEach(() => {
@@ -197,7 +201,9 @@ describe("ClientService", () => {
       streamFactoryMock = vi.fn();
       streamSpy = vi
         .spyOn(dispatcher, "stream")
-        .mockResolvedValue() as unknown as StreamSpy;
+        .mockResolvedValue(
+          undefined as unknown as Dispatcher.StreamData,
+        ) as unknown as StreamSpy;
     });
 
     afterEach(() => {

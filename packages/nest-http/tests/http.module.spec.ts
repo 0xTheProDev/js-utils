@@ -26,7 +26,7 @@ describe("HttpModule", () => {
       createHttpModuleOptions(): HttpModuleOptions {
         return {
           defaultRequestOptions: {
-            maxRedirections: 0,
+            headersTimeout: 5000,
           },
         };
       }
@@ -57,7 +57,7 @@ describe("HttpModule", () => {
       createHttpModuleOptions(): HttpModuleOptions {
         return {
           defaultRequestOptions: {
-            maxRedirections: 0,
+            headersTimeout: 5000,
           },
         };
       }
@@ -89,7 +89,7 @@ describe("HttpModule", () => {
         HttpModule.registerAsync({
           useFactory: () => ({
             defaultRequestOptions: {
-              maxRedirections: 0,
+              headersTimeout: 5000,
             },
           }),
         }),
@@ -105,7 +105,7 @@ describe("HttpModule", () => {
     class ConfigService {
       public httpOptions: HttpModuleOptions = {
         defaultRequestOptions: {
-          maxRedirections: 0,
+          headersTimeout: 5000,
         },
       };
     }
@@ -135,7 +135,7 @@ describe("HttpModule", () => {
     class ConfigService {
       public httpOptions: HttpModuleOptions = {
         defaultRequestOptions: {
-          maxRedirections: 0,
+          headersTimeout: 5000,
         },
       };
     }

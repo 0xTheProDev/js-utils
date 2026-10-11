@@ -22,10 +22,6 @@ export class ConfigService {
     return process.env["NODE_ENV"] ?? "development";
   }
 
-  getMaxRedirections() {
-    return 0 as const;
-  }
-
   getMaxTimeout() {
     return 5000 as const;
   }

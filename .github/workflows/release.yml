@@ -27,13 +27,21 @@ jobs:
           cache-version-file: .bun-version
           version-file: .nvmrc
 
+      - name: Capture Target Version
+        run: |
+          if yarn changeset status --output=release.json; then
+            echo "CHANGED_PACKAGES=$(jq -r '.releases | map(.name + "@" + .newVersion) | join(", ")' release.json)" >> "$GITHUB_ENV"
+            rm release.json
+          fi
+
       - name: Create Release Pull Request
         uses: changesets/action@v2
         with:
-          title: "chore: Release Packages"
+          commit-message: "ci(release): ${{ env.CHANGED_PACKAGES }}"
+          pr-title: "ci(release): ${{ env.CHANGED_PACKAGES }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish
-        if: steps.changesets.outputs.hasChangesets == 'false'
+        if: steps.changesets.outputs.has-changesets == 'false'
         run: yarn publish
