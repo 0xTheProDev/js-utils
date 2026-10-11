@@ -20,15 +20,20 @@ import { useCallback, useEffect, useRef } from "react";
  * }
  */
 export const useIsMounted = () => {
-  const mountedRef = useRef(false);
+  const unmountSignal = Symbol("Unmount Signal");
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
-    mountedRef.current = true;
+    abortControllerRef.current = new AbortController();
 
     return () => {
-      mountedRef.current = false;
+      abortControllerRef.current?.abort(unmountSignal);
+      abortControllerRef.current = null;
     };
   }, []);
 
-  return useCallback(() => mountedRef.current, []);
+  return useCallback(
+    () => Boolean(abortControllerRef.current?.signal.aborted),
+    [],
+  );
 };
