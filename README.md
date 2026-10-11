@@ -5,7 +5,7 @@
 [![Regression](https://github.com/0xTheProDev/js-utils/actions/workflows/regression.yml/badge.svg?style=for-the-badge)](https://github.com/0xTheProDev/js-utils/actions/workflows/regression.yml)
 [![Release](https://github.com/0xTheProDev/js-utils/actions/workflows/release.yml/badge.svg?style=for-the-badge)](https://github.com/0xTheProDev/js-utils/actions/workflows/release.yml)
 
-[![Sponsor](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)](https://github.com/sponsors/0xTheProDev)
+[![Sponsor](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=white)](https://github.com/sponsors/0xTheProDev)
 [![Code Coverage](https://img.shields.io/codecov/c/github/0xtheprodev/js-utils?style=for-the-badge&token=Y2LTY0MA2U)](https://codecov.io/github/0xTheProDev/js-utils)
 [![License](https://img.shields.io/github/license/0xTheProDev/js-utils?style=for-the-badge&label=license)](https://github.com/0xTheProDev/js-utils/blob/main/LICENSE)
 [![Open Issues](https://img.shields.io/github/issues-raw/0xTheProDev/js-utils?style=for-the-badge)](https://github.com/0xTheProDev/js-utils/issues)
@@ -48,6 +48,17 @@ A Collection of JavaScript/TypeScript Utility and Functions useful for NodeJS an
       </td>
       <td>
         <a href="https://www.npmjs.com/package/@theprodev/nest-lock"><img src="https://img.shields.io/npm/dw/@theprodev/nest-lock?style=for-the-badge" alt="Weekly Downloads" style="max-width: 100%;"></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+          <a href="./packages/react-hooks"><strong>React Hooks</strong></a>
+        </td>
+      <td>
+        <a href="https://www.npmjs.com/package/@theprodev/react-hooks"><img src="https://img.shields.io/npm/v/@theprodev/react-hooks?style=for-the-badge" alt="Npm Version" style="max-width: 100%;"></a>
+      </td>
+      <td>
+        <a href="https://www.npmjs.com/package/@theprodev/react-hooks"><img src="https://img.shields.io/npm/dw/@theprodev/react-hooks?style=for-the-badge" alt="Weekly Downloads" style="max-width: 100%;"></a>
       </td>
     </tr>
   </tbody>

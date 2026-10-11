@@ -2,7 +2,7 @@
 
 # Nest Lock
 
-[![Sponsor](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)](https://github.com/sponsors/0xTheProDev)
+[![Sponsor](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=white)](https://github.com/sponsors/0xTheProDev)
 [![Node LTS](https://img.shields.io/node/v-lts/@theprodev/nest-lock?style=for-the-badge)](https://nodejs.org)
 [![Npm Version](https://img.shields.io/npm/v/@theprodev/nest-lock?style=for-the-badge)](https://www.npmjs.com/package/@theprodev/nest-lock)
 [![Weekly Downloads](https://img.shields.io/npm/dw/@theprodev/nest-lock?style=for-the-badge)](https://www.npmjs.com/package/@theprodev/nest-lock)
