@@ -1,6 +1,6 @@
 import { Agent, Dispatcher, RetryAgent } from "undici";
 
-import { HttpModuleOptions } from "./http.module-options";
+import type { HttpModuleOptions } from "./http.module-options";
 
 import type { OnApplicationShutdown } from "@nestjs/common";
 

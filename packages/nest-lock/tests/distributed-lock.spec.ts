@@ -1,4 +1,4 @@
-import { OnApplicationShutdown } from "@nestjs/common";
+import type { OnApplicationShutdown } from "@nestjs/common";
 import { DistributedLock } from "@theprodev/distributed-lock";
 
 import { createDistributedLock } from "../src/distributed-lock";

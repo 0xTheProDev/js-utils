@@ -1,13 +1,9 @@
-import {
-  DynamicModule,
-  Module,
-  ModuleMetadata,
-  Provider,
-} from "@nestjs/common";
+import { Module } from "@nestjs/common";
+import type { DynamicModule, ModuleMetadata, Provider } from "@nestjs/common";
 
 import { createDistributedLock } from "./distributed-lock";
 import { LockModuleError } from "./lock.error";
-import {
+import type {
   LockModuleAsyncOptions,
   LockModuleOptions,
   LockModuleOptionsFactory,

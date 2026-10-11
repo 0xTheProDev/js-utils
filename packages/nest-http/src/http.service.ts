@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { Observable } from "rxjs";
 
-import { ClientService, RequestOptions, ResponseData } from "./client.service";
+import { ClientService } from "./client.service";
+import type { RequestOptions, ResponseData } from "./client.service";
 
 /**
  * @internal
