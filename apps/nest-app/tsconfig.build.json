@@ -2,6 +2,7 @@
   "compilerOptions": {
     "declaration": false,
     "module": "CommonJS",
+    "moduleResolution": "bundler",
     "outDir": "./dist",
     "sourceMap": false
   },
