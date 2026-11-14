@@ -3,9 +3,9 @@
   "compilerOptions": {
     "declaration": true,
     "incremental": false,
+    "moduleResolution": "bundler",
     "outDir": "./dist",
     "removeComments": false,
-    "types": ["vitest/globals"],
-    "ignoreDeprecations": "6.0"
+    "types": ["vitest/globals"]
   }
 }

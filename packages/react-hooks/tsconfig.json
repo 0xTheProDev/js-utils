@@ -6,9 +6,9 @@
     "incremental": false,
     "lib": ["DOM", "ESNext", "ScriptHost", "WebWorker"],
     "jsx": "preserve",
+    "moduleResolution": "bundler",
     "outDir": "./dist",
     "removeComments": false,
-    "types": ["vitest/globals"],
-    "ignoreDeprecations": "6.0"
+    "types": ["vitest/globals"]
   }
 }
